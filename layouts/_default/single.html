@@ -2,12 +2,20 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    {{ partial "javascript.html" . }}
     {{ partial "css_sheets.html" . }}
   </head>
   <body>
 {{ partial "menu.html" . }}
+<ul>{{ .Site.Menus }}</ul>
     <h1 style="color: blue;">{{.Title | markdownify }}</h1>
-    <div>{{.Content}}</div>
+    <div id="draggable-window" class="draggable-window">
+      <h1 id="window-header" class="window-header">{{.Title}}</h1>
+      <div class="icon-container">
+        <span class="glyphicon glyphicon-resize-full"></span>
+      </div>
+      <hr>
+     <p> {{.Content}}</p>
+    </div>
   </body>
+  {{ partial "javascript.html" . }}
 </html>
