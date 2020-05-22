@@ -1,0 +1,4 @@
+        {{- $currentPage := . -}}
+        {{ range .Site.Menus.main -}}
+          <button type="button" name="button" onclick="GenerateProjectWindow()"> {{ .Name }}</button>
+        {{- end }}

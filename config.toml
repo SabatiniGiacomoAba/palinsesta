@@ -1,3 +1,32 @@
 baseURL = "http://example.org/"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "PALINSESTA"
+
+[params]
+  dateform        = "Jan 2, 2006"
+  dateformShort   = "Jan 2"
+  dateformNum     = "2006-01-02"
+  dateformNumTime = "2006-01-02 15:04 -0700"
+
+  # Metadata mostly used in document's head
+  description = "My new homepage or blog"
+  keywords = "homepage, blog"
+  images = [""]
+
+  # scripts must be on /static/js
+  customJS = ["js/windows-gen.js"]
+  customCSS = ["css/style.css"]
+
+  # Directory name of your blog content (default is `content/posts`)
+  contentTypeName = "projects"
+[taxonomies]
+    tag      = "tags"
+    category = "categories"
+    series   = "series"
+    author   = "authors"
+
+    [menu]
+    [[menu.main]]
+      identifier = "projects"
+      name       = "Projects"
+      url        = "/projects"

@@ -1,0 +1,13 @@
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {{ partial "javascript.html" . }}
+    {{ partial "css_sheets.html" . }}
+  </head>
+  <body>
+{{ partial "menu.html" . }}
+    <h1 style="color: blue;">{{.Title | markdownify }}</h1>
+    <div>{{.Content}}</div>
+  </body>
+</html>
