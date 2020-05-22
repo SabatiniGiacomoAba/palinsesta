@@ -69,3 +69,20 @@ function dragElement(elmnt) {
     document.onmousemove = null;
   }
 }
+
+// Icons Logic
+if (document.querySelector(".icon-container")){
+  var is_expanded = false
+  document.querySelector(".icon-container").onclick = function(){
+    if (!is_expanded) {
+      document.querySelector("#expand").className ="glyphicon glyphicon-resize-small"
+      document.querySelector(".window-content").style.height = "100%"
+      is_expanded = !is_expanded
+    } else {
+      document.querySelector("#expand").className ="glyphicon glyphicon-resize-full"
+      document.querySelector(".window-content").style.height = "0%"
+      is_expanded = !is_expanded
+    }
+    
+  }
+}

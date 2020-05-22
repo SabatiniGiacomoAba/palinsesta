@@ -22,7 +22,7 @@ body
 #window-header:hover {
   cursor: crosshair;
 }
-.draggable-window::-webkit-scrollbar {
+.window-content::-webkit-scrollbar {
   display: none;
 }
 
@@ -31,12 +31,14 @@ body
   top: 0;
   width: 50%;
   height: 100vh;
-  overflow-y: scroll;
   font-size: 48px;
   position: absolute;
   color: black;
+}
+.window-content {
+  height: 0%;
+  overflow-y: scroll;
   transition: height 1s ;
-  
 }
 .window-header {
   font-size: 128px;
