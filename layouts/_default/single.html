@@ -1,21 +1,29 @@
 <html lang="en" dir="ltr">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title></title>
     {{ partial "css_sheets.html" . }}
-  </head>
-  <body>
-{{ partial "menu.html" . }}
-<ul>{{ .Site.Menus }}</ul>
+</head>
+
+<body>
+    {{ partial "menu.html" . }}
+    <ul>{{ .Site.Menus }}</ul>
     <h1 style="color: blue;">{{.Title | markdownify }}</h1>
     <div id="draggable-window" class="draggable-window">
-      <h1 id="window-header" class="window-header">{{.Title}}</h1>
-      <div class="icon-container">
-        <span id="expand" class="glyphicon glyphicon-resize-full"></span>
-      </div>
-      <hr>
-     <div class="window-content"> {{.Content}}</div>
+        <div id="window-header" class="window-header">
+            <h1>{{.Title}}</h1>
+            <hr>
+            <div class="icon-container">
+                <span id="expand" class="glyphicon glyphicon-resize-full"></span>
+            </div>
+        </div>
+
+
+
+        <div id="window-content" class="window-content"> {{.Content}}</div>
     </div>
-  </body>
-  {{ partial "javascript.html" . }}
+</body>
+{{ partial "javascript.html" . }}
+
 </html>
