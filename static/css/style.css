@@ -1,5 +1,6 @@
 body
 {
+  font-family: "Times New Roman" !important;
   overflow: hidden;
 }
 
@@ -9,12 +10,47 @@ body
   position: absolute;
   color: black;
   background-color: grey;
-  border: 2px solid;
-  border-color: #3B3B3B;
+  width: 200px;
+  height: 300px;
+  border:
 }
-
 
 #closeButton
 {
+  
+}
+#window-header:hover {
+  cursor: crosshair;
+}
+.window-content::-webkit-scrollbar {
+  display: none;
+}
 
+.draggable-window {
+  right: 10%;
+  top: 0;
+  width: 50%;
+  height: 100vh;
+  font-size: 48px;
+  position: absolute;
+  color: black;
+}
+.window-content {
+  height: 0%;
+  overflow-y: scroll;
+  transition: height 1s ;
+}
+.window-header {
+  font-size: 128px;
+  margin:  0;
+  z-index: 9;
+}
+.icon-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5%;
+}
+.icon-container > span:hover {
+  cursor: pointer;
 }

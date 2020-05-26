@@ -15,7 +15,7 @@ title = "PALINSESTA"
 
   # scripts must be on /static/js
   customJS = ["js/windows-gen.js"]
-  customCSS = ["css/style.css"]
+  customCSS = ["css/style.css", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"]
 
   # Directory name of your blog content (default is `content/posts`)
   contentTypeName = "projects"
@@ -29,4 +29,4 @@ title = "PALINSESTA"
     [[menu.main]]
       identifier = "projects"
       name       = "Projects"
-      url        = "/projects"
+      url        = "projects"
