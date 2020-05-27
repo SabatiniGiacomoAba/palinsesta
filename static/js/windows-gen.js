@@ -1,6 +1,8 @@
+
 dragElement(document.querySelector("#draggable-window"))
 
 $("#draggable-window").resizable();
+
 
 function dragElement(elmnt) {
     var pos1 = 0,
@@ -14,6 +16,7 @@ function dragElement(elmnt) {
         // otherwise, move the DIV from anywhere inside the DIV:
         elmnt.onmousedown = dragMouseDown;
     }
+
 
     function dragMouseDown(e) {
         e = e || window.event;
@@ -63,4 +66,3 @@ if (document.querySelector(".icon-container")) {
         }
 
     }
-}

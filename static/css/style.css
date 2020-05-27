@@ -1,6 +1,8 @@
+
 body {
     font-family: "Times New Roman" !important;
     overflow: hidden;
+
 }
 
 .windows {
@@ -34,6 +36,7 @@ body {
     transition: height .3s;
 }
 
+
 .window-header {
     position: absolute;
     width: 100%;
@@ -65,4 +68,3 @@ body {
     z-index: 9;
     overflow-y: scroll;
     transition: height .3s;
-}
