@@ -1,56 +1,70 @@
-body
-{
-  font-family: "Times New Roman" !important;
-  overflow: hidden;
+
+body {
+    font-family: "Times New Roman" !important;
+    overflow: hidden;
+
 }
 
-
-.windows
-{
-  position: absolute;
-  color: black;
-  background-color: grey;
-  width: 200px;
-  height: 300px;
-  border:
+.windows {
+    position: absolute;
+    color: black;
+    background-color: grey;
+    width: 200px;
+    height: 300px;
+    border:
 }
 
-#closeButton
-{
-  
-}
+#closeButton {}
+
 #window-header:hover {
-  cursor: crosshair;
+    cursor: crosshair;
 }
+
 .window-content::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 .draggable-window {
-  right: 10%;
-  top: 0;
-  width: 50%;
-  height: 100vh;
-  font-size: 48px;
-  position: absolute;
-  color: black;
+    border: 1px solid black;
+    right: 10%;
+    top: 0;
+    width: 50%;
+    height: 25%;
+    font-size: 48px;
+    position: absolute;
+    color: black;
+    transition: height .3s;
 }
-.window-content {
-  height: 0%;
-  overflow-y: scroll;
-  transition: height 1s ;
-}
+
+
 .window-header {
-  font-size: 128px;
-  margin:  0;
-  z-index: 9;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+    background: white;
 }
+
+.window-header h1 {
+    font-size: 80px;
+    margin: 0;
+}
+
 .icon-container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 5%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5%;
 }
-.icon-container > span:hover {
-  cursor: pointer;
+
+.icon-container>span:hover {
+    cursor: pointer;
 }
+
+.window-content {
+    position: relative;
+    top: 0;
+    padding-top: 20%;
+    height: 0%;
+    z-index: 9;
+    overflow-y: scroll;
+    transition: height .3s;
