@@ -1,0 +1,281 @@
+@font-face {
+  font-family: 'Ortica';
+  src:
+        url('../fonts/Ortica-Light.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/Ortica-Light.woff') format('woff') /* Pretty Modern Browsers */
+
+}
+
+h1 {
+  font-weight: 100;
+}
+.marquee-container {
+
+    position: absolute;
+    width: 100vw;
+    max-width: 100%;
+    height: 40px;
+    overflow-x: hidden;
+    border-bottom: 3px solid blue;
+    z-index: 11;
+    background: white;
+
+}
+.track {
+  position: absolute;
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee 32s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+#marquee {
+  color: blue;
+  margin: 0;
+}
+.site-title{
+    font-family: "Times New Roman";
+    font-size: 128px;
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    margin:0;
+    line-height: .8;
+    border-bottom: 3px solid blue;
+    color: blue;
+    z-index: 9;
+}
+.site-link:visited{
+  color:#0000EE;
+}
+body {
+    font-family: "Times New Roman";
+    overflow:hidden;
+}
+$colors: red, orange, yellow, green, blue, purple;
+
+@for $i from 1 through length($colors) {
+	.middle-container > div:nth-child(#{length($colors)}n+#{$i}) {
+        top: $i *25px;
+        left: $i *25px;
+        position: absolute;
+        //box-shadow: -5px -5px nth($colors, $i);
+    }
+    .middle-container > div:nth-child:hover(#{length($colors)}n+#{$i}) {
+        z-index:9;
+        cursor: pointer;
+	}
+}
+.middle-container {
+    top:45px;
+    position: absolute;
+    z-index: 99;
+    width:50%;
+    margin: 0 auto;
+}
+.middle-container > div {
+    width: 350px;
+    height: 200px;
+}
+.middle-container > div >img {
+    width: 100%;
+}
+
+.pink, .blue, .green {
+    position: absolute;
+  }
+  .middle-container > div:hover{
+    color:blue;
+    z-index:9;
+    cursor: pointer;
+  }
+
+  .pink {
+    background-image: url("https://i.ytimg.com/vi/829LH7AmT6A/maxresdefault.jpg");
+    background-size: cover;
+  }
+
+  .blue {
+    background-image: url("https://www.corriere.it/methode_image/2018/09/10/Tecnologia/Foto%20Tecnologia%20-%20Trattate/B1%20-%20Silvia%20Bottini%20A-knoD-U302011327322830lG-593x443@Corriere-Web-Sezioni.jpg");
+    background-size: cover;
+  }
+
+  .green {
+    background-image: url("https://i.ytimg.com/vi/n-XPRr1GTQg/maxresdefault.jpg");
+    background-size: cover;
+  }
+  .albedo{
+      background-image: url("https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-20/images/2019/06/sancho-gameplay-hero-lores-wm-web.jpg.adapt.crop191x100.628p.jpg");
+        background-size: cover;
+    }
+    .popup-window::-webkit-scrollbar {
+      display: none;
+    }
+
+  .popup-window{
+      width: 400px;
+      height: 400px;
+      border: 1px solid blue;
+      position: absolute;
+      resize: both;
+      overflow: hidden;
+      z-index: 9;
+      background: white;
+      //box-shadow: -5px -5px blue;
+
+  }
+  .popup-window:hover{
+    box-shadow: -5px -5px blue;
+  }
+  .popup-window .title-container {
+    border-bottom: 1px solid blue;
+    background: blue;
+    z-index: 999;
+    cursor: move;
+    position: absolute;
+    width: 100%;
+    padding:10px;
+  }
+  .popup-window .popup-window-title {
+    margin: 0;
+    font-size: 36px;;
+    color: white;
+  }
+  .popup-window .title-container span:hover {
+    cursor: pointer;
+  }
+  .popup-window .title-container span {
+    position: absolute;
+    color: white;
+    right: 5px;
+    top: 5px;
+    font-size: 54px;
+  }
+
+
+  .popup-window .content-container {
+      height: 81%;
+      margin-top: 15%;
+      padding: 20px;
+      overflow-y: scroll;
+  }
+  .popup-window .content-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .popup-window .content-container p {
+      font-size: 24px;
+  }
+  .video-window:hover{
+    box-shadow: -5px -5px blue;
+  }
+  .video-window {
+    z-index: 1;
+    width: 640px;
+    height: 480px;
+      position: absolute;
+      border: 1px solid blue;
+}
+  .video-window .video-title-container {
+    border-bottom: 1px solid blue;
+    background: blue;
+    z-index: 999;
+    cursor: move;
+    position: relative;
+    width: 100%;
+    padding: 10px;
+  }
+  .video-window .video-window-title {
+    font-size: 36px;
+    margin: 0;
+    color: white;
+  }
+  .video-window .video-title-container span:hover {
+    cursor: pointer;
+  }
+  .video-window .video-title-container span {
+    position: absolute;
+    color: white;
+    right: 5px;
+    top: 5px;
+    font-size: 54px;
+  }
+
+
+
+  .video-window .video-iframe-container {
+    height: 87.5%;
+    background-color: white;
+  }
+  .video-window iframe, {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    bottom: 0;
+  }
+
+
+.ytp-title {
+  display: none !important;
+}
+
+.colophon-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+.colophon-title {
+  font-size: 36px;
+}
+.colophon-title:hover {
+  cursor: pointer;
+}
+.colophon-window {
+     width: 400px;
+      height: 400px;
+      border: 1px solid blue;
+      position: absolute;
+      resize: both;
+      overflow: hidden;
+      z-index: 9;
+      background: blue;
+      color: white;
+}
+.colophon-title-container {
+  padding: 10px;
+  background: white;
+  color: blue;
+}
+.colophon-window-title {
+  margin: 0;
+}
+.colophon-window  span {
+  position: absolute;
+  color: blue;
+  right: 5px;
+  top: 5px;
+  font-size: 45px;
+}
+.colophon-content-container {
+  height: 81%;
+  //margin-top: 15%;
+  padding: 20px;
+  overflow-y: auto;
+  font-size:24px;
+}
+.colophon-content-container::-webkit-scrollbar {
+  display: none;
+}
+@media only screen and (max-width: 900px) {
+  .middle-container {
+    position: absolute;
+    z-index: 99;
+    width:80%;
+    margin: 0 auto;
+  }
+  .site-title {
+    font-size: 68px;
+  }
+}

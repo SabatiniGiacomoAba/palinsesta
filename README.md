@@ -1,5 +1,15 @@
-# palinsesta
+# Palinsesta
 
-Instructions for loading website on Netlify:
+Thanks to [@lifenautjoe](https://github.com/lifenautjoe) for the Webpack and Babel starter kit
 
-Just pull the whole project (don't generate static files) into this github repo; then go to Netlify and build website.
+How to use
+
+Node.js and npm are required
+
+Then, run the follow
+
+`npm install`
+
+And after it's done you can run the development server with
+
+`npm start`
