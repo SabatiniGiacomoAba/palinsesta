@@ -62,9 +62,28 @@ let counter =0;
 
 elmnts.forEach(el => {
     el.onclick = () =>{
-        showPopups("ASMR","Marco Almonti",lorem.generateParagraphs(3),"https://www.youtube.com/embed/P3TG8tq8zj4")
+        showPopups("asmr","marco almonti",lorem.generateParagraphs(3),"https://www.youtube.com/embed/P3TG8tq8zj4")
     }
 })
+var fonts = ["Times New Roman", "Arial", "Helvetica", "Courier", "Verdana"];
+ window.onload = function(){
+
+  setInterval(fontChanger, 16000);
+}
+var font_counter = 0;
+function fontChanger()
+{
+
+  document.getElementsByTagName("body")[0].setAttribute("style", "font-family: " + fonts[font_counter] + " !important");
+  document.getElementsByClassName("site-title")[0].setAttribute("style", "font-family: " + fonts[font_counter] + " !important");
+  font_counter++;
+  if(font_counter == 5)
+  {
+    font_counter = 0;
+  }
+}
+//function(){document.getElementsByTagName("body")[0].setAttribute("style", fonts[i] + " !important")}
+
 
 function showPopups(title,author,content, link) {
 
@@ -80,19 +99,21 @@ function showPopups(title,author,content, link) {
     _title.classList.add("popup-window-title")
     var content_container = document.createElement("div")
     content_container.classList.add("content-container")
-    _title.textContent = title
-    var _author = document.createElement("span")
-    _author.textContent = "by " + author
+    _title.textContent = title + " - di " + author;
+
+  //  var _author = document.createElement("span")
+  //  _author.textContent =  "by " + author
+  //  _author.classList.add("author");
     var _content = document.createElement("p")
     _content.textContent = content
-    content_container.appendChild(_author)
+    //title_container.appendChild(_author)
     content_container.appendChild(_content)
     title_container.appendChild(_title)
-    var span = document.createElement("span")
-    span.classList.add("glyphicon")
-    span.classList.add("glyphicon-remove")
-    span.id = counter
-    span.addEventListener("click",closePopupWindow)
+    var span = document.createElement("span");
+    var cross = document.createTextNode("×");
+    span.appendChild(cross);
+    span.id = counter;
+    span.addEventListener("click",closePopupWindow);
     title_container.append(span)
     popup_container.appendChild(title_container)
     popup_container.appendChild(content_container)
@@ -112,19 +133,24 @@ function showPopups(title,author,content, link) {
     video_container.classList.add("video-window")
     video_container.id = "video-window-"+counter
     var video_title_container = document.createElement("div")
+    //var video_author = document.createElement("span")
+    //video_author.textContent =  "by " + author
+    //video_author.classList.add("video-author");
+    //video_title_container.appendChild(video_author)
+
     video_title_container.classList.add("video-title-container")
     video_title_container.id = "video-title-container-"+counter;
     var video_title = document.createElement("h1")
     video_title.classList.add("video-window-title")
-    video_title.textContent = title
+    video_title.textContent = title + " - di " + author
     video_title_container.appendChild(video_title)
     video_container.appendChild(video_title_container)
     var video_iframe = document.createElement("div")
     video_iframe.classList.add("video-iframe-container")
     var iframe = document.createElement("iframe");
     var span = document.createElement("span")
-    span.classList.add("glyphicon")
-    span.classList.add("glyphicon-remove")
+    var cross = document.createTextNode("×");
+    span.appendChild(cross);
     span.id = counter;
     span.addEventListener("click",closePopupWindow)
     video_title_container.append(span);
