@@ -22,6 +22,7 @@
     "homepage": "",
     "dependencies": {
         "draggable": "^4.2.0",
+        "fs": "0.0.1-security",
         "html": "^1.0.0",
         "jquery": "^3.5.1",
         "jquery-ui": "^1.12.1",
@@ -47,6 +48,7 @@
         "file-loader": "^1.1.11",
         "html-webpack-plugin": "^3.1.0",
         "http-server": "^0.11.1",
+        "json-loader": "^0.5.7",
         "mini-css-extract-plugin": "^0.5.0",
         "node-sass": "^4.14.1",
         "optimize-css-assets-webpack-plugin": "^4.0.0",

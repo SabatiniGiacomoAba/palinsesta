@@ -1,7 +1,10 @@
 require('normalize.css/normalize.css');
 require('./styles/index.scss');
 
-var Draggable = require ('Draggable');
+const jsonFile = require("./students.json")
+
+
+var Draggable = require('Draggable');
 
 
 const LoremIpsum = require("lorem-ipsum").LoremIpsum;
@@ -20,26 +23,46 @@ const lorem = new LoremIpsum({
 
 
 
+
+
+document.querySelector(".colophon-title").onclick = showColophon;
+
+
+//interaction
+
+
+jsonFile.students.forEach(el => {
+  console.log(el)
+  var container = document.querySelector(".middle-container")
+  var projectWindow = document.createElement("div")
+  projectWindow.style.backgroundSize = "cover"
+  projectWindow.style.backgroundImage = "url('" + el.cover + "')"
+  projectWindow.onclick = () => {
+    showPopups(el.title, el.author, el.description, el.link)
+  }
+  container.appendChild(projectWindow)
+})
+
 // menu moving
 var elmnts = document.querySelectorAll('.middle-container > div');
 var elmntsLength = elmnts.length
 let menuCounter = 0
 
-var myTimer = setInterval(moveMenus,500)
+var myTimer = setInterval(moveMenus, 500)
 
-function moveMenus(){
+function moveMenus() {
   elmnts.forEach(el => {
     el.style.zIndex = "initial";
   })
   elmnts[menuCounter].style.zIndex = "9";
-  if (menuCounter == elmntsLength-1) {
+  if (menuCounter == elmntsLength - 1) {
     menuCounter = 0
   } else {
     menuCounter++
   }
 }
 elmnts.forEach(el => {
-  el.onmouseover = () =>{
+  el.onmouseover = () => {
     elmnts.forEach(el => {
       el.style.zIndex = "0"
     })
@@ -47,195 +70,181 @@ elmnts.forEach(el => {
 
   }
 })
-document.querySelector(".middle-container").onmouseenter= () => {
+document.querySelector(".middle-container").onmouseenter = () => {
   clearInterval(myTimer)
 }
-document.querySelector(".middle-container").onmouseleave= () => {
-  myTimer = setInterval(moveMenus,500)
+document.querySelector(".middle-container").onmouseleave = () => {
+  myTimer = setInterval(moveMenus, 500)
 }
 
-document.querySelector(".colophon-title").onclick = showColophon;
 
-
-//interaction
-let counter =0;
-
-
-elmnts.forEach(el => {
-    el.onclick = () =>{
-        showPopups("asmr","marco almonti",lorem.generateParagraphs(3),"https://www.youtube.com/embed/P3TG8tq8zj4")
-    }
-})
 
 // font change
-var fonts = ["Times New Roman",  "Helvetica", "Courier","Arial", "Verdana", "Comic Sans MS"];
+var fonts = ["Times New Roman", "Helvetica", "Courier", "Arial", "Verdana", "Comic Sans MS"];
 // mettiamo il timer in una varibile così da poterlo resettare quando si clicca un elemento
 
 
 var fontTimer
- window.onload = function(){
+window.onload = function () {
   fontTimer = setInterval(fontChanger, 16000);
 
 }
 var font_counter = 0;
-function fontChanger()
-{
+function fontChanger() {
 
   clearInterval(fontTimer)
   document.getElementsByTagName("body")[0].setAttribute("style", "font-family: '" + fonts[font_counter] + "' !important");
   document.getElementsByClassName("site-title")[0].setAttribute("style", "font-family: " + fonts[font_counter] + " !important");
   font_counter++;
-  if(font_counter == fonts.length)
-  {
+  if (font_counter == fonts.length) {
     font_counter = 0;
   }
   fontTimer = setInterval(fontChanger, 16000);
 }
-//function(){document.getElementsByTagName("body")[0].setAttribute("style", fonts[i] + " !important")}
 
+// this counter is used for setting unique IDs around the object, so that we can close them without any problem by accessind their IDs
+let counter = 0;
 
-function showPopups(title,author,content, link) {
+function showPopups(title, author, content, link) {
   // se clicchiamo per fare comparire un popup cambiamo il carattere
-    fontChanger()
+  fontChanger()
   // description
 
-    var popup_container = document.createElement("div")
-    popup_container.classList.add("popup-window")
-    popup_container.id = "popup-window-"+counter
-    var title_container = document.createElement("div")
-    title_container.classList.add("title-container")
-    title_container.id = "title-container-"+counter;
-    var _title = document.createElement("h1")
-    _title.classList.add("popup-window-title")
-    var content_container = document.createElement("div")
-    content_container.classList.add("content-container")
-    _title.textContent = title + " - di " + author;
+  var popup_container = document.createElement("div")
+  popup_container.classList.add("popup-window")
+  popup_container.id = "popup-window-" + counter
+  var title_container = document.createElement("div")
+  title_container.classList.add("title-container")
+  title_container.id = "title-container-" + counter;
+  var _title = document.createElement("h1")
+  _title.classList.add("popup-window-title")
+  var content_container = document.createElement("div")
+  content_container.classList.add("content-container")
+  _title.textContent = title + " - di " + author;
 
   //  var _author = document.createElement("span")
   //  _author.textContent =  "by " + author
   //  _author.classList.add("author");
-    var _content = document.createElement("p")
-    _content.textContent = content
-    //title_container.appendChild(_author)
-    content_container.appendChild(_content)
-    title_container.appendChild(_title)
-    var span = document.createElement("span");
-    var cross = document.createTextNode("×");
-    span.appendChild(cross);
-    span.id = counter;
-    span.addEventListener("click",closePopupWindow);
-    title_container.append(span)
-    popup_container.appendChild(title_container)
-    popup_container.appendChild(content_container)
+  var _content = document.createElement("p")
+  _content.textContent = content
+  //title_container.appendChild(_author)
+  content_container.appendChild(_content)
+  title_container.appendChild(_title)
+  var span = document.createElement("span");
+  var cross = document.createTextNode("×");
+  span.appendChild(cross);
+  span.id = counter;
+  span.addEventListener("click", closePopupWindow);
+  title_container.append(span)
+  popup_container.appendChild(title_container)
+  popup_container.appendChild(content_container)
 
-    counter++
+  counter++
 
-    document.body.appendChild(popup_container)
-    popup_container.style.top = (Math.random()* window.innerHeight)/3 + "px";
-    popup_container.style.left = (Math.random()* window.innerWidth)/3 + "px";
-    new Draggable (popup_container, {
-      handle: title_container,
-      onDragEnd: fontChanger
-    });
-   // video
+  document.body.appendChild(popup_container)
+  popup_container.style.top = (Math.random() * window.innerHeight) / 3 + "px";
+  popup_container.style.left = (Math.random() * window.innerWidth) / 3 + "px";
+  new Draggable(popup_container, {
+    handle: title_container,
+    onDragEnd: fontChanger
+  });
+  // video
 
-// devo provare ad aggiungere il titolo
-    var video_container = document.createElement("div")
-    video_container.classList.add("video-window")
-    video_container.id = "video-window-"+counter
-    var video_title_container = document.createElement("div")
-    //var video_author = document.createElement("span")
-    //video_author.textContent =  "by " + author
-    //video_author.classList.add("video-author");
-    //video_title_container.appendChild(video_author)
+  // devo provare ad aggiungere il titolo
+  var video_container = document.createElement("div")
+  video_container.classList.add("video-window")
+  video_container.id = "video-window-" + counter
+  var video_title_container = document.createElement("div")
+  //var video_author = document.createElement("span")
+  //video_author.textContent =  "by " + author
+  //video_author.classList.add("video-author");
+  //video_title_container.appendChild(video_author)
 
-    video_title_container.classList.add("video-title-container")
-    video_title_container.id = "video-title-container-"+counter;
-    var video_title = document.createElement("h1")
-    video_title.classList.add("video-window-title")
-    video_title.textContent = title + " - di " + author
-    video_title_container.appendChild(video_title)
-    video_container.appendChild(video_title_container)
-    var video_iframe = document.createElement("div")
-    video_iframe.classList.add("video-iframe-container")
-    var iframe = document.createElement("iframe");
-    var span = document.createElement("span")
-    var cross = document.createTextNode("×");
-    span.appendChild(cross);
-    span.id = counter;
-    span.addEventListener("click",closePopupWindow)
-    video_title_container.append(span);
-    iframe.setAttribute("src",link);
-    iframe.setAttribute("autoplay","1")
-    video_iframe.appendChild(iframe)
+  video_title_container.classList.add("video-title-container")
+  video_title_container.id = "video-title-container-" + counter;
+  var video_title = document.createElement("h1")
+  video_title.classList.add("video-window-title")
+  video_title.textContent = title + " - di " + author
+  video_title_container.appendChild(video_title)
+  video_container.appendChild(video_title_container)
+  var video_iframe = document.createElement("div")
+  video_iframe.classList.add("video-iframe-container")
+  var iframe = document.createElement("iframe");
+  var span = document.createElement("span")
+  var cross = document.createTextNode("×");
+  span.appendChild(cross);
+  span.id = counter;
+  span.addEventListener("click", closePopupWindow)
+  video_title_container.append(span);
+  iframe.setAttribute("src", link);
+  iframe.setAttribute("autoplay", "1")
+  video_iframe.appendChild(iframe)
 
-    video_container.appendChild(video_iframe)
+  video_container.appendChild(video_iframe)
 
 
-    document.body.appendChild(video_container)
-    video_container.style.top = Math.random()* window.innerHeight/3 + "px";
-    video_container.style.left = Math.random()* window.innerWidth/3 + "px";
-    //dragElement(video_container,counter)
-    counter++
-    new Draggable (video_container, {
-      onDragEnd: fontChanger
-    });
+  document.body.appendChild(video_container)
+  video_container.style.top = Math.random() * window.innerHeight / 3 + "px";
+  video_container.style.left = Math.random() * window.innerWidth / 3 + "px";
+  //dragElement(video_container,counter)
+  counter++
+  new Draggable(video_container, {
+    onDragEnd: fontChanger
+  });
 
 
 }
-function closePopupWindow(){
+function closePopupWindow() {
   fontChanger()
   var thisContainer = this.parentNode;
   var master = thisContainer.parentNode;
   //alert(master.id);
   const id = this.id
-  if(master.id == "popup-window-"+id)
-  {
-    document.querySelector("#popup-window-"+id).remove()
+  if (master.id == "popup-window-" + id) {
+    document.querySelector("#popup-window-" + id).remove()
   }
-  else if(master.id == "video-window-"+id)
-  {
-    document.querySelector("#video-window-"+id).remove()
+  else if (master.id == "video-window-" + id) {
+    document.querySelector("#video-window-" + id).remove()
   }
 }
 
-function showColophon(){
+function showColophon() {
   fontChanger()
   var popup_container = document.createElement("div")
-    popup_container.classList.add("colophon-window")
-    popup_container.id = "colophon-window-"+counter
-    var title_container = document.createElement("div")
-    title_container.classList.add("colophon-title-container")
-    title_container.id = "colophon-title-container-"+counter;
-    var _title = document.createElement("h1")
-    _title.classList.add("colophon-window-title")
-    var content_container = document.createElement("div")
-    content_container.classList.add("colophon-content-container")
-    _title.textContent = "colophon"
-    var _content = document.createElement("p")
-    _content.textContent = "Palinsesta è un format creato dal corso di Visual Motion e Design all'Accademia di Belle Arti di Urbino."
-    content_container.appendChild(_content)
-    title_container.appendChild(_title)
-    var span = document.createElement("span")
-    var cross = document.createTextNode("×");
-    span.appendChild(cross);
-    span.id = counter
-    span.addEventListener("click",closeColophon)
-    title_container.append(span)
-    popup_container.appendChild(title_container)
-    popup_container.appendChild(content_container)
+  popup_container.classList.add("colophon-window")
+  popup_container.id = "colophon-window-" + counter
+  var title_container = document.createElement("div")
+  title_container.classList.add("colophon-title-container")
+  title_container.id = "colophon-title-container-" + counter;
+  var _title = document.createElement("h1")
+  _title.classList.add("colophon-window-title")
+  var content_container = document.createElement("div")
+  content_container.classList.add("colophon-content-container")
+  _title.textContent = "colophon"
+  var _content = document.createElement("p")
+  _content.textContent = "Palinsesta è un format creato dal corso di Visual Motion e Design all'Accademia di Belle Arti di Urbino."
+  content_container.appendChild(_content)
+  title_container.appendChild(_title)
+  var span = document.createElement("span")
+  var cross = document.createTextNode("×");
+  span.appendChild(cross);
+  span.id = counter
+  span.addEventListener("click", closeColophon)
+  title_container.append(span)
+  popup_container.appendChild(title_container)
+  popup_container.appendChild(content_container)
 
 
 
-    document.body.appendChild(popup_container)
-    popup_container.style.top = (Math.random()* window.innerHeight)/3 + "px";
-    popup_container.style.left = (Math.random()* window.innerWidth)/3 + "px";
-    new Draggable (popup_container, {
-      handle: title_container,
-      onDragEnd: fontChanger
-    });
+  document.body.appendChild(popup_container)
+  popup_container.style.top = (Math.random() * window.innerHeight) / 3 + "px";
+  popup_container.style.left = (Math.random() * window.innerWidth) / 3 + "px";
+  new Draggable(popup_container, {
+    handle: title_container,
+    onDragEnd: fontChanger
+  });
 }
-function closeColophon(){
+function closeColophon() {
   fontChanger()
   document.querySelectorAll(".colophon-window").forEach(el => {
     el.remove()
