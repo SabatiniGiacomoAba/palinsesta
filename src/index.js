@@ -1,6 +1,6 @@
-
 require('normalize.css/normalize.css');
 require('./styles/index.scss');
+
 var Draggable = require ('Draggable');
 
 
@@ -16,6 +16,7 @@ const lorem = new LoremIpsum({
     min: 4
   }
 });
+
 
 
 
@@ -65,28 +66,37 @@ elmnts.forEach(el => {
         showPopups("asmr","marco almonti",lorem.generateParagraphs(3),"https://www.youtube.com/embed/P3TG8tq8zj4")
     }
 })
-var fonts = ["Times New Roman", "Arial", "Helvetica", "Courier", "Verdana"];
- window.onload = function(){
 
-  setInterval(fontChanger, 16000);
+// font change
+var fonts = ["Times New Roman",  "Helvetica", "Courier","Arial", "Verdana", "Comic Sans MS"];
+// mettiamo il timer in una varibile così da poterlo resettare quando si clicca un elemento
+
+
+var fontTimer
+ window.onload = function(){
+  fontTimer = setInterval(fontChanger, 16000);
+
 }
 var font_counter = 0;
 function fontChanger()
 {
 
-  document.getElementsByTagName("body")[0].setAttribute("style", "font-family: " + fonts[font_counter] + " !important");
+  clearInterval(fontTimer)
+  document.getElementsByTagName("body")[0].setAttribute("style", "font-family: '" + fonts[font_counter] + "' !important");
   document.getElementsByClassName("site-title")[0].setAttribute("style", "font-family: " + fonts[font_counter] + " !important");
   font_counter++;
-  if(font_counter == 5)
+  if(font_counter == fonts.length)
   {
     font_counter = 0;
   }
+  fontTimer = setInterval(fontChanger, 16000);
 }
 //function(){document.getElementsByTagName("body")[0].setAttribute("style", fonts[i] + " !important")}
 
 
 function showPopups(title,author,content, link) {
-
+  // se clicchiamo per fare comparire un popup cambiamo il carattere
+    fontChanger()
   // description
 
     var popup_container = document.createElement("div")
@@ -124,7 +134,8 @@ function showPopups(title,author,content, link) {
     popup_container.style.top = (Math.random()* window.innerHeight)/3 + "px";
     popup_container.style.left = (Math.random()* window.innerWidth)/3 + "px";
     new Draggable (popup_container, {
-      handle: title_container
+      handle: title_container,
+      onDragEnd: fontChanger
     });
    // video
 
@@ -166,11 +177,14 @@ function showPopups(title,author,content, link) {
     video_container.style.left = Math.random()* window.innerWidth/3 + "px";
     //dragElement(video_container,counter)
     counter++
-    new Draggable (video_container);
+    new Draggable (video_container, {
+      onDragEnd: fontChanger
+    });
 
 
 }
 function closePopupWindow(){
+  fontChanger()
   var thisContainer = this.parentNode;
   var master = thisContainer.parentNode;
   //alert(master.id);
@@ -186,6 +200,7 @@ function closePopupWindow(){
 }
 
 function showColophon(){
+  fontChanger()
   var popup_container = document.createElement("div")
     popup_container.classList.add("colophon-window")
     popup_container.id = "colophon-window-"+counter
@@ -202,8 +217,8 @@ function showColophon(){
     content_container.appendChild(_content)
     title_container.appendChild(_title)
     var span = document.createElement("span")
-    span.classList.add("glyphicon")
-    span.classList.add("glyphicon-remove")
+    var cross = document.createTextNode("×");
+    span.appendChild(cross);
     span.id = counter
     span.addEventListener("click",closeColophon)
     title_container.append(span)
@@ -216,10 +231,12 @@ function showColophon(){
     popup_container.style.top = (Math.random()* window.innerHeight)/3 + "px";
     popup_container.style.left = (Math.random()* window.innerWidth)/3 + "px";
     new Draggable (popup_container, {
-      handle: title_container
+      handle: title_container,
+      onDragEnd: fontChanger
     });
 }
 function closeColophon(){
+  fontChanger()
   document.querySelectorAll(".colophon-window").forEach(el => {
     el.remove()
   })
