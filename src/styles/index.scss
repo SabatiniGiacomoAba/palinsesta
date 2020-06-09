@@ -44,6 +44,7 @@ h1 {
   } //52.5%; in this way, the second h1 is substituted by the first one, giving the illusion of an endless loop.
 }
 
+
 .site-title {
   //  font-family: "Times New Roman";
   font-size: 128px;
@@ -150,22 +151,43 @@ body {
   position: absolute;
   width: 100%;
   padding: 10px;
+  overflow:hidden;
+
   //height: 20.5%;
 }
 .popup-window .popup-window-title {
   margin: 0;
+
+  white-space: nowrap;
   font-size: 24px;
   color: white;
+
 }
+.titles_marquee
+{
+    -webkit-animation: titles_marquee 10s linear infinite;
+}
+
 .popup-window .title-container span:hover {
   cursor: pointer;
 }
 .popup-window .title-container span {
   position: absolute;
   color: white;
-  right: 15px;
-  top: 0px;
+  width:45px;
+  right: 0px;
+  top: -2px;
   font-size: 36px;
+  background-color: blue;
+}
+
+@-webkit-keyframes titles_marquee {
+  0% {
+    -webkit-transform: translateX(100%);
+  } //i had to use -webkit-transform or browsers couldn't read it
+  100% {
+    -webkit-transform: translateX(-100%);
+  } //52.5%; in this way, the second h1 is substituted by the first one, giving the illusion of an endless loop.
 }
 .popup-window .title-container .author {
   font-size: 14px !important;
@@ -202,6 +224,7 @@ body {
   background: blue;
   z-index: 999;
   cursor: move;
+  overflow: hidden;
   position: relative;
   width: 100%;
   padding: 10px;
@@ -218,9 +241,11 @@ body {
 .video-window .video-title-container span {
   position: absolute;
   color: white;
-  right: 15px;
-  top: 0px;
+  width:45px;
+  right: 0px;
+  top: -2px;
   font-size: 36px;
+  background-color: blue;
 }
 
 .video-window .video-iframe-container {
@@ -272,6 +297,7 @@ body {
   color: blue;
   font-size: 24px !important;
 }
+
 .colophon-window-title {
   margin: 0;
   font-size: 24px;
@@ -279,7 +305,9 @@ body {
 .colophon-window span {
   position: absolute;
   color: blue;
-  right: 5px;
+  background-color:white;
+  right: 0px;
+  height: 45px;
   top: 0px;
   font-size: 36px;
 }
@@ -294,13 +322,115 @@ body {
   display: none;
 }
 @media only screen and (max-width: 900px) {
+  body{
+    overflow: hidden;
+  }
   .middle-container {
     position: absolute;
     z-index: 99;
-    width: 80%;
+    width: 50%;
     margin: 0 auto;
+    top: 100px;
   }
+
+ .titles_marquee
+ {
+   -webkit-animation: titles_marquee 10s linear infinite;
+   width:140%;
+ }
+
+  .middle-container > div {
+    width: 175px;
+    height: 100px;
+  }
+  .middle-container > div > img {
+    width: 100%;
+  }
+
+  @for $i from 1 through 9 {
+    .middle-container > div:nth-child( #{$i}) {
+      top: $i * 15px;
+      left: $i * 15px;
+      position: absolute;
+      //box-shadow: -5px -5px nth($colors, $i);
+    }
+    .middle-container > div:nth-child:hover( #{$i}) {
+      z-index: 9;
+      cursor: pointer;
+    }
+  }
+
+
+
   .site-title {
-    font-size: 68px;
+    font-size: 54px;
   }
+
+  .video-window {
+    z-index: 1;
+    width: 300px;
+    height: 250px;
+    position: absolute;
+    border: 3px solid blue;
+    white-space: nowrap;
+  }
+
+  .popup-window {
+    width: 300px;
+    height: 250px;
+    border: 3px solid blue;
+    position: absolute;
+    resize: both;
+    overflow: hidden;
+    z-index: 9;
+    background: white;
+    //box-shadow: -5px -5px blue;
+  }
+  .video-window .video-iframe-container {
+    height: 80.5%;
+    background-color: white;
+  }
+  @-webkit-keyframes titles_marquee {
+    0% {
+      -webkit-transform: translateX(100%);
+    } //i had to use -webkit-transform or browsers couldn't read it
+    100% {
+      -webkit-transform: translateX(-100%);
+    } //52.5%; in this way, the second h1 is substituted by the first one, giving the illusion of an endless loop.
+  }
+
+  .colophon-window {
+    width: 300px;
+    height: 250px;
+    border: 1px solid blue;
+    position: absolute;
+    resize: both;
+    overflow: hidden;
+    z-index: 9;
+    background: blue;
+    color: white;
+  }
+  .colophon-container {
+    height: 45px;
+    position: absolute;
+    top: 57.5px;
+    right: 20px;
+  }
+  .colophon-title {
+    margin:0px;
+    font-size: 36px;
+    color: blue;
+  }
+  .project-container {
+    height: 45px;
+    position: absolute;
+    top: 57.5px;
+    left: 20px;
+  }
+  .project-title {
+    margin:0px;
+    font-size: 36px;
+    color: blue;
+  }
+
 }
