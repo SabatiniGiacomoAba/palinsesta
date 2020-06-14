@@ -1,8 +1,15 @@
+
+
+
+'use strict';
+
+
 require('normalize.css/normalize.css');
 require('./styles/index.scss');
 
-const jsonFile = require("./students.json");
 
+const jsonFile = require("./students.json");
+//const fs = require('file-system');
 
 
 var Draggable = require('Draggable');
@@ -44,11 +51,13 @@ document.querySelector(".colophon-title").onclick = showColophon;
 //interaction
 
 
+
 jsonFile.students.forEach(el => {
   //console.log(el)
   var container = document.querySelector(".middle-container")
   var projectWindow = document.createElement("div")
-  projectWindow.style.backgroundSize = "cover"
+  projectWindow.title = "Clicca qui per aprire il progetto!";
+  projectWindow.style.backgroundSize = "cover";
   projectWindow.style.backgroundImage = "url('" + el.cover + "')"
   projectWindow.onclick = () => {
     showPopups(el.title, el.author, el.description, el.link)
@@ -56,13 +65,179 @@ jsonFile.students.forEach(el => {
   container.appendChild(projectWindow)
 })
 
+
 // menu moving
 var elmnts = document.querySelectorAll('.middle-container > div');
 var elmntsLength = elmnts.length
 let menuCounter = 0
 
-var myTimer = setInterval(moveMenus, 500)
 
+var myTimer = setInterval(moveMenus, 500)
+/*
+var addBtn = document.getElementsByClassName("add-button")[0];
+addBtn.onclick = function()
+{
+  fontChanger()
+  var addProject_container = document.createElement("div")
+  addProject_container.classList.add("add-project-window")
+  addProject_container.id = "add-project-window-" + counter
+  var title_container = document.createElement("div")
+  title_container.classList.add("add-project-title-container")
+  title_container.id = "add-project-title-container-" + counter;
+  var _title = document.createElement("h1")
+  _title.classList.add("add-project-window-title")
+  _title.classList.add("titles_marquee");
+  var content_container = document.createElement("div")
+  content_container.classList.add("add-project-content-container")
+  _title.textContent = "carica il tuo progetto!";
+//showPopups(el.title, el.author, el.description, el.link)
+  var _content = document.createElement("p");
+   _content.textContent = "inviaci il tuo progetto!";
+  // var pjForm = document.createElement("form");
+
+   var titleLabel =  document.createElement("label");
+   var titleInput =   document.createElement("input");
+   var authorLabel =  document.createElement("label");
+   var authorInput =   document.createElement("input");
+   var descriptionLabel =  document.createElement("label");
+   var descriptionInput =   document.createElement("input");
+   var linkLabel =  document.createElement("label");
+   var linkInput =   document.createElement("input");
+   var coverLabel =  document.createElement("label");
+   var coverInput =   document.createElement("input");
+   var pjSubmit =  document.createElement("button");
+
+  content_container.appendChild(_content)
+
+
+  //pjForm.setAttribute("method", "POST");
+
+  titleLabel.setAttribute("for","pjTitle");
+  titleLabel.innerHTML = "titolo";
+  titleInput.setAttribute("type","text");
+  titleInput.setAttribute("id","pjTitle");
+  titleInput.setAttribute("name","pjTitle");
+  titleInput.setAttribute("value", "");
+
+  authorLabel.setAttribute("for","pjAuthor");
+  authorLabel.innerHTML = "autore";
+  authorInput.setAttribute("type","text");
+  authorInput.setAttribute("id","pjAuthor");
+  authorInput.setAttribute("name","pjAuthor");
+  authorInput.setAttribute("value", "");
+
+  descriptionLabel.setAttribute("for","pjDescription");
+  descriptionLabel.innerHTML = "descrizione";
+  descriptionInput.setAttribute("type","text");
+  descriptionInput.setAttribute("id","pjDescription");
+  descriptionInput.setAttribute("name","pjDescription");
+  descriptionInput.setAttribute("value", "");
+
+  linkLabel.setAttribute("for","pjLink");
+  linkLabel.innerHTML = "link del progetto";
+  linkInput.setAttribute("type","text");
+  linkInput.setAttribute("id","pjLink");
+  linkInput.setAttribute("name","pjLink");
+  linkInput.setAttribute("value", "");
+
+  coverLabel.setAttribute("for","pjCover");
+  coverLabel.innerHTML = "immagine di copertina (url)";
+  coverInput.setAttribute("type","text");
+  coverInput.setAttribute("id","pjCover");
+  coverInput.setAttribute("name","pjCover");
+  coverInput.setAttribute("value", "");
+
+  //pjSubmit.setAttribute("type", "submit");
+  //pjSubmit.setAttribute("value", "invia");
+  pjSubmit.innerHTML = "invia";
+
+  content_container.appendChild(titleLabel);
+  content_container.appendChild(document.createElement("br"));
+  content_container.appendChild(titleInput);
+  content_container.appendChild(document.createElement("br"));
+
+  content_container.appendChild(authorLabel);
+  content_container.appendChild(document.createElement("br"));
+  content_container.appendChild(authorInput);
+  content_container.appendChild(document.createElement("br"));
+
+  content_container.appendChild(descriptionLabel);
+  content_container.appendChild(document.createElement("br"));
+  content_container.appendChild(descriptionInput);
+  content_container.appendChild(document.createElement("br"));
+
+  content_container.appendChild(linkLabel);
+  content_container.appendChild(document.createElement("br"));
+  content_container.appendChild(linkInput);
+  content_container.appendChild(document.createElement("br"));
+
+  content_container.appendChild(coverLabel);
+  content_container.appendChild(document.createElement("br"));
+  content_container.appendChild(coverInput);
+  content_container.appendChild(document.createElement("br"));
+  content_container.appendChild(pjSubmit);
+
+  //content_container.appendChild(pjForm);
+
+
+  title_container.appendChild(_title)
+  var span = document.createElement("span")
+  var cross = document.createTextNode("×");
+  span.appendChild(cross);
+  span.style.padding = "0px 12.5px";
+  span.id = counter
+  span.addEventListener("click", closeAddProj)
+  title_container.append(span)
+  addProject_container.appendChild(title_container)
+  addProject_container.appendChild(content_container)
+
+//const fs = require('fs');
+//const fs = require('fs');
+pjSubmit.onclick = () =>
+{
+
+  //document.getElementById("pjTitle").value
+  let project = {
+    "author": document.getElementById("pjAuthor").value,
+     "title" :document.getElementById("pjTitle").value,
+     "link": document.getElementById("pjLink").value,
+     "description": document.getElementById("pjDescription").value,
+     "cover": document.getElementById("pjTitle").value
+  };
+  let data = JSON.stringify(project);
+  console.log(project);
+
+fs.writeFile(jsonFile.students, project, (err) =>
+{
+  if (err) throw err;
+    console.log('Data written to file');
+})
+}
+
+  document.body.appendChild(addProject_container)
+  addProject_container.style.top = (Math.random() * window.innerHeight) / 3 + "px";
+  addProject_container.style.left = (Math.random() * window.innerWidth) / 3 + "px";
+  new Draggable(addProject_container, {
+    handle: title_container,
+    onDragEnd:  function(){
+      fontChanger();
+      addProject_container.style.zIndex = 98;
+      for(var y = 0; y < document.getElementsByClassName('popup-window').length; y++)
+      {
+          document.getElementsByClassName('popup-window')[y].style.zIndex -= 1;
+          //console.log(document.getElementsByClassName('popup-window')[y].style.zIndex);
+      }
+    }
+  });
+}
+
+function closeAddProj() {
+  fontChanger()
+  document.querySelectorAll(".add-project-window").forEach(el => {
+    el.remove()
+  })
+}
+*/
 
 function moveMenus() {
   elmnts.forEach(el => {
@@ -103,29 +278,85 @@ var fonts = ["Times New Roman", "Helvetica", "Courier", "Arial", "Verdana", "Com
 
 var fontTimer
 window.onload = function () {
+  var projectContainer = document.getElementsByClassName("project-container")[0]
+  document.getElementsByClassName("middle-container")[0].style.display = "none";
+  var projectDisplayed = false;
+  document.getElementsByTagName("body")[0].appendChild(projectContainer);
+  var firstTime = true;
+  projectContainer.onclick = () =>
+  {
+    if(!projectDisplayed)
+    {
+     if(firstTime)
+      {
+        if(screen.width <900)
+        {
+
+            fontChanger()
+            var guide_container = document.createElement("div")
+            guide_container.classList.add("g-window")
+            guide_container.id = "g-window-" + counter
+            var title_container = document.createElement("div")
+            title_container.classList.add("g-title-container")
+            title_container.id = "g-title-container-" + counter;
+            var _title = document.createElement("h1")
+            _title.classList.add("g-window-title")
+            _title.classList.add("titles_marquee");
+            var content_container = document.createElement("div")
+            content_container.classList.add("g-content-container")
+            _title.textContent = "Guida";
+
+            var _content = document.createElement("p")
+            _content.textContent = "Scrolla sopra le immagini per navigare e clicca per aprire il progetto.";
+            content_container.appendChild(_content)
+            title_container.appendChild(_title)
+            var span = document.createElement("span")
+            var cross = document.createTextNode("×");
+            span.appendChild(cross);
+            span.style.padding = "0px 12.5px";
+            span.id = counter
+            span.onclick = () =>{
+              fontChanger()
+              document.querySelectorAll(".g-window").forEach(el => {
+                el.remove()
+            });
+          }
+
+            title_container.append(span)
+            guide_container.appendChild(title_container)
+            guide_container.appendChild(content_container)
+
+
+
+            document.body.appendChild(guide_container)
+            guide_container.style.top =  (window.innerHeight/2) + "px";
+            guide_container.style.left =  50 + "px";
+            new Draggable(guide_container, {
+              handle: title_container,
+              onDragEnd:  function(){
+                fontChanger();
+                guide_container.style.zIndex = 98;
+                for(var y = 0; y < document.getElementsByClassName('guide-window').length; y++)
+                {
+                    document.getElementsByClassName('guide-window')[y].style.zIndex -= 1;
+                    //console.log(document.getElementsByClassName('guide-window')[y].style.zIndex);
+                }
+              }
+            });
+          }
+        firstTime = false;
+      }
+        document.getElementsByClassName("middle-container")[0].style.display = "block";
+        projectDisplayed = true;
+    }
+    else{
+      document.getElementsByClassName("middle-container")[0].style.display = "none";
+      projectDisplayed = false;
+    }
+  }
   if(screen.width < 900)
   {
-    var projectContainer = document.createElement("div");
-    var projectButton = document.createElement("h4");
-    projectContainer.classList.add("project-container");
-    projectButton.classList.add("project-title");
-    projectButton.innerHTML = "progetti";
-    projectContainer.appendChild(projectButton);
-    document.getElementsByClassName("middle-container")[0].style.display = "none";
-    var projectDisplayed = false;
-    document.getElementsByTagName("body")[0].appendChild(projectContainer);
-    projectContainer.onclick = () =>
-    {
-      if(!projectDisplayed)
-      {
-          document.getElementsByClassName("middle-container")[0].style.display = "block";
-          projectDisplayed = true;
-      }
-      else{
-        document.getElementsByClassName("middle-container")[0].style.display = "none";
-        projectDisplayed = false;
-      }
-    }
+
 
   /*  var mouseOver = false;
 $('body').bind('mousewheel', function(e){
@@ -139,7 +370,7 @@ $('body').bind('mousewheel', function(e){
 $('body').mouseenter(function(){ mouseOver=true; });
 $('body').mouseleave(function(){ mouseOver=false; }); */
 var pjCounter = 0;
-var limit = 30;
+var limit = 20;
 var touchStartYValue = 0;
 var lastDelta = 0;
 $('body').bind('touchstart', function(e)
@@ -153,7 +384,7 @@ $('body').bind('touchmove', function(e){
   var delta = touchStartYValue - e.originalEvent.changedTouches[0].clientY;;
     console.log(delta);
 
-  if(delta > limit){
+  if(delta >= limit){
   pjCounter--;
     if(pjCounter > -1)
     {
@@ -163,17 +394,17 @@ $('body').bind('touchmove', function(e){
       pjs.style.zIndex = "0";
     })
     projectsArray[pjCounter].style.zIndex = "9";
-    limit += 30;
+    limit += 20;
     lastDelta = delta;
     }
     else {
       pjCounter++;
       delta = lastDelta;
     }
-  console.log("limit is " + limit);
-  console.log("pjCounter is " + pjCounter);
+  //console.log("limit is " + limit);
+ //  console.log("pjCounter is " + pjCounter);
   }
-  else{
+  else if (delta < limit){
     pjCounter++;
     if(pjCounter < projectsArray.length)
     {
@@ -182,7 +413,7 @@ $('body').bind('touchmove', function(e){
       pjs.style.zIndex = "0";
     })
     projectsArray[pjCounter].style.zIndex = "9";
-    limit -= 30;
+    limit -= 20;
   //  lastDelta = delta;
     }
     else {
@@ -254,13 +485,17 @@ function showPopups(title, author, content, link) {
   span.style.padding = "0px 15px";
   span.id = counter;
   span.addEventListener("click", closePopupWindow);
+  $("#"+counter).bind("tap", closePopupWindow);
   title_container.append(span)
   popup_container.appendChild(title_container)
   popup_container.appendChild(content_container)
 
   counter++
 
-  document.body.appendChild(popup_container)
+  document.body.appendChild(popup_container);
+
+
+
   popup_container.style.top = (Math.random() * window.innerHeight) / 3 + "px";
   popup_container.style.left = (Math.random() * window.innerWidth) / 3 + "px";
   new Draggable(popup_container, {
@@ -268,12 +503,12 @@ function showPopups(title, author, content, link) {
     onDragEnd:  function(){
       fontChanger();
       popup_container.style.zIndex = 98;
-      console.log("command exe: " +  document.getElementsByClassName("popup-window").length);
+      //console.log("command exe: " +  document.getElementsByClassName("popup-window").length);
       for(var y = 0; y < document.getElementsByClassName('popup-window').length; y++)
       {
           document.getElementsByClassName('popup-window')[y].style.zIndex -= 1;
           //console.log(document.getElementsByClassName('popup-window')[y].style.zIndex);
-          console.log("command exe");
+          //console.log("command exe");
       }
     }
   });
@@ -309,6 +544,7 @@ function showPopups(title, author, content, link) {
   span.style.padding = "0px 15px";
   span.id = counter;
   span.addEventListener("click", closePopupWindow)
+  $("#"+counter).bind("tap", closePopupWindow);
   video_title_container.append(span);
   iframe.setAttribute("src", link);
   iframe.setAttribute("autoplay", "1")

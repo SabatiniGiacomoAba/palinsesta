@@ -7,6 +7,94 @@
 h1 {
   font-weight: 100;
 }
+
+input{
+  color: blue;
+}
+
+/*
+.add-container {
+  position: fixed;
+  z-index: 99;
+  bottom: 0px;
+  right: 20px;
+}
+.add-button {
+  font-size: 42px;
+  color: blue;
+}
+.add-button:hover {
+  cursor: pointer;
+}
+
+.add-project-container {
+  position: fixed;
+  z-index: 99;
+  top: 45px;
+  right: 20px;
+}
+.add-project-title {
+  font-size: 36px;
+  color: blue;
+}
+.add-project-title:hover {
+  cursor: pointer;
+}
+.add-project-window {
+  width: 400px;
+  height: 400px;
+  border: 1px solid blue;
+  position: absolute;
+  resize: both;
+  overflow: hidden;
+  z-index: 9;
+  background: blue;
+  color: white;
+}
+.add-project-title-container {
+  padding: 10px;
+  background: white;
+  color: blue;
+  font-size: 24px !important;
+}
+
+.add-project-window-title {
+  margin: 0;
+  font-size: 24px;
+}
+.add-project-window span {
+  position: absolute;
+  color: blue;
+  background-color:white;
+  right: 0px;
+  height: 45px;
+  top: 0px;
+  font-size: 36px;
+}
+.add-project-content-container {
+  height: 81%;
+  //margin-top: 15%;
+  padding: 20px;
+  overflow-y: auto;
+  font-size: 18px;
+}
+.add-project-content-container button{
+  margin-top: 10px;
+color: white;
+background-color: blue;
+border:solid white;
+}
+.add-project-content-container button:hover{
+box-shadow: -2px -2px white;
+}
+
+.add-project-content-container::-webkit-scrollbar {
+  display: none;
+}
+.add-project-window:hover {
+  box-shadow: -5px -5px blue;
+}
+*/
 .marquee {
   position: absolute;
   width: 100vw;
@@ -55,7 +143,7 @@ h1 {
   line-height: 0.8;
   border-bottom: 3px solid blue;
   color: blue;
-  z-index: 9;
+  z-index: 99;
 }
 .site-link:visited {
   color: #0000ee;
@@ -80,7 +168,7 @@ body {
   }
 }
 .middle-container {
-  top: 45px;
+  top: 90px;
   position: absolute;
   z-index: 99;
   width: 100%;
@@ -167,7 +255,22 @@ body {
 {
     -webkit-animation: titles_marquee 10s linear infinite;
 }
-
+.project-container {
+  height: 45px;
+  position: absolute;
+  top: 57.5px;
+  left: 20px;
+  z-index: 99;
+}
+.project-title {
+  margin:0px;
+  font-size: 36px;
+  color: blue;
+}
+.project-title:hover
+{
+  cursor:pointer;
+}
 .popup-window .title-container span:hover {
   cursor: pointer;
 }
@@ -268,9 +371,176 @@ body {
   display: none !important;
 }
 
+.g-container {
+  position: fixed;
+  z-index: 99;
+  top: 45px;
+  right: 20px;
+}
+.g-title {
+  font-size: 36px;
+  color: blue;
+}
+.g-title:hover {
+  cursor: pointer;
+}
+.g-window {
+  width: 400px;
+  height: 400px;
+  border: 1px solid blue;
+  position: absolute;
+  resize: both;
+  overflow: hidden;
+  z-index: 9;
+  background: blue;
+  color: white;
+}
+.g-title-container {
+  padding: 10px;
+  background: white;
+  color: blue;
+  font-size: 24px !important;
+}
+
+.g-window-title {
+  margin: 0;
+  font-size: 24px;
+}
+.g-window span {
+  position: absolute;
+  color: blue;
+  background-color:white;
+  right: 0px;
+  height: 45px;
+  top: 0px;
+  font-size: 36px;
+}
+.g-content-container {
+  height: 81%;
+  //margin-top: 15%;
+  padding: 20px;
+  overflow-y: auto;
+  font-size: 18px;
+}
+.g-content-container::-webkit-scrollbar {
+  display: none;
+}
+
+.g-container {
+  position: fixed;
+  z-index: 99;
+  top: 45px;
+  right: 20px;
+}
+.g-title {
+  font-size: 36px;
+  color: blue;
+}
+.g-title:hover {
+  cursor: pointer;
+}
+.g-window {
+  width: 400px;
+  height: 400px;
+  border: 1px solid blue;
+  position: absolute;
+  resize: both;
+  overflow: hidden;
+  z-index: 9;
+  background: blue;
+  color: white;
+}
+.g-title-container {
+  padding: 10px;
+  background: white;
+  color: blue;
+  font-size: 24px !important;
+}
+
+.g-window-title {
+  margin: 0;
+  font-size: 24px;
+}
+.g-window span {
+  position: absolute;
+  color: blue;
+  background-color:white;
+  right: 0px;
+  height: 45px;
+  top: 0px;
+  font-size: 36px;
+}
+.g-content-container {
+  height: 81%;
+  //margin-top: 15%;
+  padding: 20px;
+  overflow-y: auto;
+  font-size: 18px;
+}
+.g-content-container::-webkit-scrollbar {
+  display: none;
+}
+
+
+.g-container {
+  position: fixed;
+  z-index: 99;
+  top: 45px;
+  right: 20px;
+}
+.g-title {
+  font-size: 36px;
+  color: blue;
+}
+.g-title:hover {
+  cursor: pointer;
+}
+.g-window {
+  width: 400px;
+  height: 400px;
+  border: 1px solid blue;
+  position: absolute;
+  resize: both;
+  overflow: hidden;
+  z-index: 9;
+  background: blue;
+  color: white;
+}
+.g-title-container {
+  padding: 10px;
+  background: white;
+  color: blue;
+  font-size: 24px !important;
+}
+
+.g-window-title {
+  margin: 0;
+  font-size: 24px;
+}
+.g-window span {
+  position: absolute;
+  color: blue;
+  background-color:white;
+  right: 0px;
+  height: 45px;
+  top: 0px;
+  font-size: 36px;
+}
+.g-content-container {
+  height: 81%;
+  //margin-top: 15%;
+  padding: 20px;
+  overflow-y: auto;
+  font-size: 18px;
+}
+.g-content-container::-webkit-scrollbar {
+  display: none;
+}
+
 .colophon-container {
   position: fixed;
-  bottom: 20px;
+  z-index: 99;
+  top: 45px;
   right: 20px;
 }
 .colophon-title {
@@ -331,6 +601,7 @@ body {
     width: 50%;
     margin: 0 auto;
     top: 100px;
+
   }
 
  .titles_marquee
@@ -418,7 +689,30 @@ body {
   }
   .colophon-title {
     margin:0px;
-    font-size: 36px;
+    font-size: 30px;
+    color: blue;
+  }
+
+  .g-window {
+    width: 300px;
+    height: 250px;
+    border: 1px solid blue;
+    position: absolute;
+    resize: both;
+    overflow: hidden;
+    z-index: 9;
+    background: blue;
+    color: white;
+  }
+  .g-container {
+    height: 45px;
+    position: absolute;
+    top: 57.5px;
+    right: 20px;
+  }
+  .g-title {
+    margin:0px;
+    font-size: 30px;
     color: blue;
   }
   .project-container {
@@ -429,8 +723,44 @@ body {
   }
   .project-title {
     margin:0px;
-    font-size: 36px;
+    font-size: 30px;
     color: blue;
   }
+
+  .add-container {
+    position: fixed;
+    z-index: 99;
+    bottom: 10px;
+    right: 20px;
+  }
+  .add-button {
+    font-size: 42px;
+    color: blue;
+    margin:0px;
+
+  }
+/*
+  .add-project-window {
+    width: 300px;
+    height: 250px;
+    border: 1px solid blue;
+    position: absolute;
+    resize: both;
+    overflow: hidden;
+    z-index: 9;
+    background: blue;
+    color: white;
+  }
+  .add-project-container {
+    height: 45px;
+    position: absolute;
+    top: 57.5px;
+    right: 20px;
+  }
+  .add-project-title {
+    margin:0px;
+    font-size: 30px;
+    color: blue;
+  }*/
 
 }
