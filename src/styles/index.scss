@@ -186,6 +186,7 @@ body {
 .middle-container > div {
   width: 350px;
   height: 200px;
+  filter: sepia(100%) hue-rotate(190deg) saturate(500%);
 }
 .middle-container > div > img {
   width: 100%;
