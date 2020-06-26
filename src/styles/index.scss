@@ -34,7 +34,7 @@ input{
   right: 20px;
 }
 .add-project-title {
-  font-size: 36px;
+  font-size: 30px;
   color: blue;
 }
 .add-project-title:hover {
@@ -69,7 +69,7 @@ input{
   right: 0px;
   height: 45px;
   top: 0px;
-  font-size: 36px;
+  font-size: 30px;
 }
 .add-project-content-container {
   height: 81%;
@@ -96,18 +96,19 @@ box-shadow: -2px -2px white;
 }
 */
 .marquee {
-  position: absolute;
+  position: fixed;
   width: 100vw;
   //max-width: 100%;
   height: 40px;
   overflow: hidden;
   border-bottom: 3px solid blue;
-  z-index: 11;
+  border-top: 3px solid blue;
+  z-index: 11000;
   background: white;
 
   color: blue;
 }
-.marquee div {
+.animation-runner {
   display: block;
   //  width: 700%;
   height: 45px;
@@ -115,13 +116,19 @@ box-shadow: -2px -2px white;
   //  margin-top: -7.5px;
   white-space: nowrap;
   //  will-change: transform;
+ 
+}
+
+.run-animation {
   animation: marquee 32s linear infinite;
 }
-.marquee h1 {
+
+.marquee h4 {
   margin: 0px;
   display: inline-block;
   width: 52.5%;
-  font-size: 30px;
+  font-size: 30px !important;
+  font-weight: normal;
 }
 @-webkit-keyframes marquee {
   0% {
@@ -135,8 +142,9 @@ box-shadow: -2px -2px white;
 
 .site-title {
   //  font-family: "Times New Roman";
-  font-size: 128px;
-  position: absolute;
+  font-size: 30px;
+  font-weight: normal;
+  position: fixed;
   bottom: 10px;
   left: 20px;
   margin: 0;
@@ -150,7 +158,7 @@ box-shadow: -2px -2px white;
 }
 body {
   //font-family: "Times New Roman";
-  overflow: hidden;
+  overflow-x: hidden;
   text-transform: lowercase;
 }
 
@@ -169,10 +177,11 @@ body {
 }
 .middle-container {
   top: 90px;
-  position: absolute;
-  z-index: 99;
+  position: fixed;
+  z-index: 999999;
   width: 100%;
   margin: 0 auto;
+  display: none;
 }
 .middle-container > div {
   width: 350px;
@@ -257,14 +266,15 @@ body {
 }
 .project-container {
   height: 45px;
-  position: absolute;
+  position: fixed;
   top: 57.5px;
   left: 20px;
   z-index: 99;
 }
 .project-title {
   margin:0px;
-  font-size: 36px;
+  font-size: 30px;
+  font-weight: normal;
   color: blue;
 }
 .project-title:hover
@@ -280,7 +290,7 @@ body {
   width:45px;
   right: 0px;
   top: -2px;
-  font-size: 36px;
+  font-size: 30px;
   background-color: blue;
 }
 
@@ -347,7 +357,7 @@ body {
   width:45px;
   right: 0px;
   top: -2px;
-  font-size: 36px;
+  font-size: 30px;
   background-color: blue;
 }
 
@@ -378,7 +388,7 @@ body {
   right: 20px;
 }
 .g-title {
-  font-size: 36px;
+  font-size: 30px;
   color: blue;
 }
 .g-title:hover {
@@ -413,7 +423,7 @@ body {
   right: 0px;
   height: 45px;
   top: 0px;
-  font-size: 36px;
+  font-size: 30px;
 }
 .g-content-container {
   height: 81%;
@@ -433,7 +443,7 @@ body {
   right: 20px;
 }
 .g-title {
-  font-size: 36px;
+  font-size: 30px;
   color: blue;
 }
 .g-title:hover {
@@ -468,7 +478,7 @@ body {
   right: 0px;
   height: 45px;
   top: 0px;
-  font-size: 36px;
+  font-size: 30px;
 }
 .g-content-container {
   height: 81%;
@@ -489,7 +499,7 @@ body {
   right: 20px;
 }
 .g-title {
-  font-size: 36px;
+  font-size: 30px;
   color: blue;
 }
 .g-title:hover {
@@ -524,7 +534,7 @@ body {
   right: 0px;
   height: 45px;
   top: 0px;
-  font-size: 36px;
+  font-size: 30px;
 }
 .g-content-container {
   height: 81%;
@@ -544,7 +554,8 @@ body {
   right: 20px;
 }
 .colophon-title {
-  font-size: 36px;
+  font-size: 30px;
+  font-weight: normal;
   color: blue;
 }
 .colophon-title:hover {
@@ -579,7 +590,7 @@ body {
   right: 0px;
   height: 45px;
   top: 0px;
-  font-size: 36px;
+  font-size: 30px;
 }
 .colophon-content-container {
   height: 81%;
@@ -593,11 +604,11 @@ body {
 }
 @media only screen and (max-width: 900px) {
   body{
-    overflow: hidden;
+    //overflow: hidden;
   }
   .middle-container {
-    position: absolute;
-    z-index: 99;
+    position: fixed;
+    z-index: 999999999;
     width: 50%;
     margin: 0 auto;
     top: 100px;
@@ -607,7 +618,7 @@ body {
  .titles_marquee
  {
    -webkit-animation: titles_marquee 10s linear infinite;
-   width:140%;
+   width:100%;
  }
 
   .middle-container > div {
@@ -634,11 +645,10 @@ body {
 
 
   .site-title {
-    font-size: 54px;
+    font-size: 30px;
   }
 
   .video-window {
-    z-index: 1;
     width: 300px;
     height: 250px;
     position: absolute;
@@ -683,13 +693,14 @@ body {
   }
   .colophon-container {
     height: 45px;
-    position: absolute;
+    position: fixed;
     top: 57.5px;
     right: 20px;
   }
   .colophon-title {
     margin:0px;
     font-size: 30px;
+    font-weight: normal;
     color: blue;
   }
 
@@ -717,13 +728,14 @@ body {
   }
   .project-container {
     height: 45px;
-    position: absolute;
+    position: fixed;
     top: 57.5px;
     left: 20px;
   }
   .project-title {
     margin:0px;
     font-size: 30px;
+    font-weight: normal;
     color: blue;
   }
 
