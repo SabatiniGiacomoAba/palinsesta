@@ -186,10 +186,14 @@ body {
 .middle-container > div {
   width: 350px;
   height: 200px;
-  filter: sepia(100%) hue-rotate(190deg) saturate(500%);
+  background: #0000ff;
 }
 .middle-container > div > img {
   width: 100%;
+  height: 100%;
+  mix-blend-mode: screen;
+  -webkit-filter: grayscale(100%) contrast(200%);
+  filter: grayscale(100%) contrast(200%);
 }
 
 .pink,

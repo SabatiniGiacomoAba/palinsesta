@@ -57,8 +57,11 @@ jsonFile.students.forEach(el => {
   var container = document.querySelector(".middle-container")
   var projectWindow = document.createElement("div")
   projectWindow.title = "Clicca qui per aprire il progetto!";
-  projectWindow.style.backgroundSize = "cover";
-  projectWindow.style.backgroundImage = "url('" + el.cover + "')"
+  //projectWindow.style.backgroundSize = "cover";
+  //projectWindow.style.backgroundImage = "url('" + el.cover + "')"
+  var projectCover = document.createElement("img");
+  projectCover.src = el.cover;
+  projectWindow.appendChild(projectCover)
   projectWindow.onclick = () => {
     showPopups(el.title, el.author, el.description, el.link)
   }
