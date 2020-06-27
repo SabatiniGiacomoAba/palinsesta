@@ -29,6 +29,7 @@ const lorem = new LoremIpsum({
 });
 
 
+
 function textWidth(text, fontProp) {
     var tag = document.createElement('div')
     tag.style.position = 'absolute'
@@ -51,7 +52,6 @@ document.querySelector(".colophon-title").onclick = showColophon;
 //interaction
 
 
-
 jsonFile.students.forEach(el => {
   //console.log(el)
   var container = document.querySelector(".middle-container")
@@ -59,9 +59,17 @@ jsonFile.students.forEach(el => {
   projectWindow.title = "Clicca qui per aprire il progetto!";
   //projectWindow.style.backgroundSize = "cover";
   //projectWindow.style.backgroundImage = "url('" + el.cover + "')"
-  var projectCover = document.createElement("img");
-  projectCover.src = el.cover;
-  projectWindow.appendChild(projectCover)
+  if(screen.width < 900)
+  {
+    var projectTitle =document.createElement("h1");
+    projectTitle.innerHTML = el.title;
+    projectWindow.appendChild(projectTitle);
+  }
+  else {
+    var projectCover = document.createElement("img");
+    projectCover.src = el.cover;
+    projectWindow.appendChild(projectCover)
+  }
   projectWindow.onclick = () => {
     showPopups(el.title, el.author, el.description, el.link)
   }
@@ -330,13 +338,13 @@ function showProjectContainer() {
             handle: title_container,
             onDragEnd:  function(){
               //fontChanger();
-              
+
               for(var y = 0; y < document.getElementsByClassName('popup-window').length; y++)
               {
                   document.getElementsByClassName('popup-window')[y].style.zIndex -= 1;
                   //console.log(document.getElementsByClassName('guide-window')[y].style.zIndex);
               }
-              
+
               for(var y = 0; y < document.getElementsByClassName('video-window').length; y++)
               {
                   document.getElementsByClassName('video-window')[y].style.zIndex -= 1;
@@ -358,16 +366,38 @@ function showProjectContainer() {
 }
 
 var fontTimer
+var logoTimer
+var logoNum = 8.0;
+var logoCounter=0;
+var logoTranslate = -(100.0/logoNum);
+function logoChanger()
+{
+  clearInterval(logoTimer);
+  if(logoCounter == logoNum-1)
+  {
+    logoCounter = 1;
+  }
+  else
+  {
+    logoCounter++;
+  }
+  $("#icon-list").css("transform", 'translateY('+(logoTranslate*logoCounter)+'%)');
+  logoTimer = setInterval(logoChanger, 4000);
+
+}
 window.onload = function () {
+
+logoTimer = setInterval(logoChanger, 4000);
+
   var projectContainer = document.getElementsByClassName("project-container")[0]
   document.getElementsByClassName("middle-container")[0].style.display = "none";
-  
+
   document.getElementsByTagName("body")[0].appendChild(projectContainer);
-  
+
   projectContainer.addEventListener("click", showProjectContainer)
 
   //projectContainer.addEventListener("touchstart", showProjectContainer)
-  
+
   if(screen.width < 900)
   {
 
@@ -394,7 +424,7 @@ $('body').bind('touchstart', function(e)
 });
 $('body').bind('touchmove', function(e){
   var projectsArray = document.querySelectorAll('.middle-container > div');
-  
+
 
   var delta = touchStartYValue - e.originalEvent.changedTouches[0].clientY;;
 
@@ -422,7 +452,7 @@ $('body').bind('touchmove', function(e){
     pjCounter++;
     if(pjCounter < projectsArray.length)
     {
-      
+
     projectsArray.forEach((pjs,idx) => {
       if (idx == pjCounter) {return}
       pjs.style.zIndex = "0";
@@ -461,7 +491,7 @@ function fontChanger() {
   fontTimer = setInterval(fontChanger, 16000);
   $(".animation-runner").removeClass("run-animation")
   $(".animation-runner").addClass("run-animation")
-  
+
 
 }
 
@@ -524,7 +554,7 @@ function showPopups(title, author, content, link) {
     popup_container.style.top = window_counter >= 1 ? (250 * window_counter) + "px" : (window.innerHeight / 2)  + "px";
     popup_container.style.left = ("600px");
   }
-  
+
   new Draggable(popup_container, {
     handle: title_container,
     onDragEnd: function() {
@@ -584,7 +614,7 @@ function showPopups(title, author, content, link) {
 
 
   document.body.appendChild(video_container)
-  
+
 
 
   if (window.innerWidth < 900) {
@@ -666,7 +696,7 @@ function showColophon() {
   new Draggable(popup_container, {
     handle: title_container,
     onDragEnd:  function(){
-     
+
       for(var y = 0; y < document.getElementsByClassName('popup-window').length; y++)
       {
           document.getElementsByClassName('popup-window')[y].style.zIndex -= 1;
